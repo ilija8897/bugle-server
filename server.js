@@ -5,6 +5,8 @@ const app = express();
 const server = require('http').createServer(app);
 const routes = require('./routes');
 const sockets = require('./sockets.js');
+var bodyParser = require('body-parser');
+
 const io = require('socket.io')(server, {
   serveClient: true,
   cors: {
@@ -15,7 +17,7 @@ const io = require('socket.io')(server, {
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/chat', {useNewUrlParser: true, useUnifiedTopology: true});
-
+app.use(bodyParser.json());
 app.use(cors());
 app.use('/', routes);
 sockets(io);

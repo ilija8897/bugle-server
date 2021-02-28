@@ -7,4 +7,14 @@ const MessageSchema = new Schema({
     user: {type: String},
 });
 
-module.exports = mongoose.model('MessageModel', MessageSchema);
+const UserSchema = new Schema({
+    username: {type: String},
+    email: {type: String},
+    password: {type: String},
+    // chats: {type: Array},
+});
+
+module.exports = {
+    MessageModel: mongoose.model('MessageModel', MessageSchema),
+    UserModel: mongoose.model('UserModel', UserSchema),
+}
